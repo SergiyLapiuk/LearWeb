@@ -26,7 +26,7 @@ namespace Tests
             optionsBuilder.UseSqlServer("Server= DESKTOP-RTDQS5I; Database=LearnAPI; Trusted_Connection=True; MultipleActiveResultSets=true");
             var controller = new SubjectsController(new LearnAPIContext(optionsBuilder.Options));
             var result = await controller.GetSubjects();
-            Assert.Contains(result.Value, c => c.Name.Equals("Математика"));
+            Assert.Contains(result.Value, c => c.Name.Equals("sdsdvs"));
         }
     }
 }

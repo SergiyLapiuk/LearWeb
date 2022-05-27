@@ -11,6 +11,7 @@ namespace LearnWeb.Models
 
         public int Id { get; set; }
         [Required]
+        [EmailAddress]
         public string Name { get; set; }
         [Range(1950, 2007,
         ErrorMessage = "{0} повинен від {1} до {2}.")]

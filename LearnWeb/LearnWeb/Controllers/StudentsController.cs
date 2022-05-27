@@ -89,12 +89,21 @@ namespace LearnWeb.Controllers
           {
               return Problem("Entity set 'LearnAPIContext.Students'  is null.");
           }
+            if (!IsUnique(student.Name))
+                return Problem("Entity already exists.");
             _context.Students.Add(student);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetStudent", new { id = student.Id }, student);
         }
-
+        bool IsUnique(string name)
+        {
+            var q = (from student in _context.Students
+                     where student.Name == name
+                     select student).ToList();
+            if (q.Count == 0) { return true; }
+            return false;
+        }
         // DELETE: api/Students/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStudent(int id)
